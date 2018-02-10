@@ -1,0 +1,9 @@
+.idea/
+.idea/CarND-Behavioral-Cloning-P3.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+__pycache__/
+data/
+linux_sim/
+model.h5
