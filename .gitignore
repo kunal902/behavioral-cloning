@@ -7,3 +7,4 @@ __pycache__/
 data/
 linux_sim/
 model.h5
+.ipynb_checkpoints/

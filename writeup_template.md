@@ -10,13 +10,10 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./output_images/normal.png "Normal Images"
+[image2]: ./output_images/brightness.png "Brightness modification"
+[image3]: ./output_images/cropped.png "Cropped Image"
+[image4]: ./output_images/flipped.png "Flipped Image"
 
 ---
 ### Files Submitted & Code Quality
@@ -113,28 +110,24 @@ Train on 11049 samples, validate on 2763 samples
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+Here are some sample images captured from the center, left and right camera while driving:
+
+![alt text][image1]
+
+To augment the data sat, I flipped images and angles thinking that this would remove the left turn bias. For example, here are some images that has then been flipped:
+
+![alt text][image4]
+
+To augment the data sat, I also randomly change the brightness thinking that this would simulate the day and night behavior or even in days when the car is moving underneath some shadows. For example, here are some images that has been augmented:
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+I also cropped the data set and took only the relevant portion of the image which is useful for training. For example, here are some images that has been cropped:
 
 ![alt text][image3]
-![alt text][image4]
-![alt text][image5]
 
-Then I repeated this process on track two in order to get more data points.
+I collected training sets by recovery lapses, counter clockwise driving and smooth driving around turns.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+After collecting the dataset I randomly shuffled the data set and put 20% of the data into a validation set.
 
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set.
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 5 as evidenced by experimenting with the number of epochs and observing the validation loss in each epoch. I used an adam optimizer so that manually training the learning rate wasn't necessary.
