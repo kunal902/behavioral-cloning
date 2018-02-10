@@ -63,13 +63,19 @@ def load_data():
 
 
 def build_model():
+    # create a keras sequential model
     model = Sequential()
+    # added a lambda layer for normalization
     model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(160, 320, 3)))
+    # added a cropping layer to crop 70 pixels from the top and 25 pixels from the bottom
     model.add(Cropping2D(cropping=((70, 25), (0, 0))))
+    # added a convolution layer
     model.add(Conv2D(32, 5, 5, input_shape=(64, 64, 3), subsample=(2, 2), border_mode="same"))
+    # used ELU activation
     model.add(ELU())
     model.add(Conv2D(16, 3, 3, subsample=(1, 1), border_mode="valid"))
     model.add(ELU())
+    # added dropout for regularization
     model.add(Dropout(.4))
     model.add(MaxPooling2D((2, 2), border_mode='valid'))
     model.add(Conv2D(16, 3, 3, subsample=(1, 1), border_mode="valid"))
@@ -81,8 +87,11 @@ def build_model():
     model.add(ELU())
     model.add(Dense(512))
     model.add(ELU())
+    # final layer of single output
     model.add(Dense(1))
+    # used adam optimizer to optimize the mean squared error
     model.compile(optimizer="adam", loss="mse")
+    # get a summary of the model
     model.summary()
     return model
 
